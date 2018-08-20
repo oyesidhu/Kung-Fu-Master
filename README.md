@@ -1,9 +1,5 @@
-#Team Members
-	Mandeep Singh Sidhu- 104849826
-	Eshan Gill- 104877120
-
 # KungfuClub
-	KungFu Martial Arts School Administrative website built in AngularJS and Spring Boot
+	KungFu Martial Arts School Administrative website built in AngularJS and JAVA using Spring Boot
 
 #Steps of Execution
 	1. Import the project in Eclipse.
