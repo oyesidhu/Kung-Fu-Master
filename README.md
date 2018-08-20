@@ -23,7 +23,7 @@
 	On the server-side, we embraced Java as the programming dialect. 
 	The web server used to manufacture and run the framework is Open Source and broadly utilized, the Tomcat web server. 
 	The web layer is coded on the highest point of the Java Spring Framework. 
-	It is additionally Open Source and in our framework, it is in charge of getting the customer's solicitations by means of 
+	It is additionally Open Source and in our framework, it is in charge of getting the customer's solicitations by means of.
 	HTTP and restore the information in JSON arrange back to the UI to be displayed. 
 	The last critical framework layer is the information layer. The DBMS used to execute this framework was PostgreSQL. 
 	The ORM (Object-social Mapping) API additionally gave by the Spring Framework was utilized to keep up the information.
