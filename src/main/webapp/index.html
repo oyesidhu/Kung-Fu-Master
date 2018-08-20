@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Project2">
+  <head>
+    <meta charset="utf-8">
+    <title>Kung Fu Master</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<style>
+		* { margin: 0; padding: 0; }
+		
+		html { 
+			background: url(02.jpg) no-repeat center center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		
+		#page-wrap { width: 400px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
+	button{
+  background:#1AAB8A!important;
+  color:#fff!important;
+  border:none!important;
+  position:relative;
+  height:40px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff!important;
+  color:#1AAB8A!important;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+.bttn {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  
+  padding: 14px 0px;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+.bttn:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -2;
+}
+.bttn:hover:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.bttn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.bttn-dark {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  width: 270px;
+  font-weight: bold;
+  padding: 14px 0px;
+  border: 3px solid #644cad;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+.bttn-dark:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #644cad;
+  z-index: -1;
+}
+.bttn-dark:hover:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.bttn-dark:focus:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+	
+	</style>
+	<style>
+	@charset "UTF-8";
+@import url("//fonts.googleapis.com/css?family=Pacifico&text=Pure");
+@import url("//fonts.googleapis.com/css?family=Roboto:700&text=css");
+@import url("//fonts.googleapis.com/css?family=Kaushan+Script&text=!");
+.stage {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  perspective: 9999px;
+  transform-style: preserve-3d;
+}
+
+.layer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: ಠ_ಠ 5s infinite alternate ease-in-out -7.5s;
+  animation-fill-mode: forwards;
+  transform: rotateY(25deg) rotateX(23deg) translateZ(0);
+}
+
+.layer:after {
+  font: 40px/0.65 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
+  content: 'Kung Fu\A    Master!';
+  white-space: pre;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  color: whitesmoke;
+  letter-spacing: -2px;
+  text-shadow: 4px 0 10px rgba(0, 0, 0, 0.13);
+}
+
+.layer:nth-child(1):after {
+  transform: translateZ(0px);
+}
+
+.layer:nth-child(2):after {
+  transform: translateZ(-1.5px);
+}
+
+.layer:nth-child(3):after {
+  transform: translateZ(-3px);
+}
+
+.layer:nth-child(4):after {
+  transform: translateZ(-4.5px);
+}
+
+.layer:nth-child(5):after {
+  transform: translateZ(-6px);
+}
+
+.layer:nth-child(6):after {
+  transform: translateZ(-7.5px);
+}
+
+.layer:nth-child(7):after {
+  transform: translateZ(-9px);
+}
+
+.layer:nth-child(8):after {
+  transform: translateZ(-10.5px);
+}
+
+.layer:nth-child(9):after {
+  transform: translateZ(-12px);
+}
+
+.layer:nth-child(10):after {
+  transform: translateZ(-13.5px);
+}
+
+.layer:nth-child(11):after {
+  transform: translateZ(-15px);
+}
+
+.layer:nth-child(12):after {
+  transform: translateZ(-16.5px);
+}
+
+.layer:nth-child(13):after {
+  transform: translateZ(-18px);
+}
+
+.layer:nth-child(14):after {
+  transform: translateZ(-19.5px);
+}
+
+.layer:nth-child(15):after {
+  transform: translateZ(-21px);
+}
+
+.layer:nth-child(16):after {
+  transform: translateZ(-22.5px);
+}
+
+.layer:nth-child(17):after {
+  transform: translateZ(-24px);
+}
+
+.layer:nth-child(18):after {
+  transform: translateZ(-25.5px);
+}
+
+.layer:nth-child(19):after {
+  transform: translateZ(-27px);
+}
+
+.layer:nth-child(20):after {
+  transform: translateZ(-28.5px);
+}
+
+.layer:nth-child(n+10):after {
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.25);
+}
+
+.layer:nth-child(n+11):after {
+  -webkit-text-stroke: 15px dodgerblue;
+  text-shadow: 6px 0 6px #00366b, 5px 5px 5px #002951, 0 6px 6px #00366b;
+}
+
+.layer:nth-child(n+12):after {
+  -webkit-text-stroke: 15px #0077ea;
+}
+
+.layer:last-child:after {
+  -webkit-text-stroke: 17px rgba(0, 0, 0, 0.1);
+}
+
+.layer:first-child:after {
+  color: #fff;
+  text-shadow: none;
+}
+
+@keyframes ಠ_ಠ {
+  100% {
+    transform: rotateY(-25deg) rotateX(-23deg);
+  }
+}
+	</style>
+
+    <!-- Custom styles for this template -->
+    <link href="navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+  
+    <div class="container" ng-controller="studentSearch as stud">
+
+    <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color: #FFFFFF"></a>
+            <div class="stage">
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+  <div class="layer"></div>
+</div>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <!-- Main component for a searching students -->
+    <div ng-hide="stud.showUpdatePage"> <!--Handling for update pages-->
+    <div class="searchBar" ng-show="stud.pageTypeSearch">
+
+      <div class="jumbotron" style="padding-top: 10px; padding-bottom: 130px;">
+        <!-- Split button -->
+        <div class="col-sm-8">
+         <h2>Search Student</h2>
+         <div class="btn-group">
+          <button type="button" class="btn btn-primary"  ng-click="stud.searchCall('All')">
+            All
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary " ng-click="stud.searchCall('Active')">
+            Active
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.searchCall('Rank')">
+            By Rank
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.searchCall('Year')">
+            By Year
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.searchCall('Belts')">
+            By Belts
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.searchCall('Combo')" >
+            Combo
+          </button>
+        </div >
+      </div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-primary" ng-click="stud.changePage(false)" style="float: right">
+          Add Record
+        </button>
+      </div>
+    </div>
+
+
+    <!--Hidden fields-->
+    <div class="jumbotron" ng-show="stud.searchByCatgory" style="padding-top: 10px; padding-bottom: 100px;">
+      <h3>Please select</h3>
+      <div class="col-sm-3" ng-show="stud.isSearchByBelts">
+        <div class="form-group" >
+          <label for="belts">Belt:</label>
+          <select class="form-control" ng-model="stud.beltSearchType" >
+                <option ng-repeat="option in stud.uniqueRankRecords" value="{{option}}" >{{option}}</option>
+          </select> 
+        </div>
+      </div> 
+      <div class="col-sm-3" ng-show="stud.isSearchByBelts">
+        <button type="button" class="btn btn-primary" style="margin-top: 23px;" ng-click="stud.searchByBelt(stud.beltSearchType)">
+            Search
+        </button>
+      </div>
+      <div class="col-sm-3" ng-show="stud.isSearchByRank">
+        <div class="form-group" >
+          <div class="form-group" >
+            <label for="rank">Rank:</label><br>
+            <div class="input-group">
+              <select class="form-control" ng-model="stud.studentStruct.rank.rk_code" style="width: 175px">
+                <option ng-repeat="option in stud.uniqueRankRecords" value="{{option}}" >{{option}}</option>
+              </select> 
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-3" ng-show="stud.isSearchByRank">
+        <button type="button" class="btn btn-primary" style="margin-top: 24px;" ng-click="stud.searchByRank(stud.studentStruct.rank.rk_code)">
+            Search
+        </button>
+      </div>
+      <div class="col-sm-8" ng-show="stud.isSearchByYear">
+        <div class="form-group" >
+          <label for="year">Year of Enrollment:</label><br>
+          <div class="input-group">
+            <select class="form-control" id="belts" ng-model="stud.yearOptionSelected" style="width: 50px">
+              <option><=</option>
+              <option>=</option>
+              <option>>=</option>
+            </select> 
+            <input type="text" class="form-control" aria-describedby="basic-addon1" style="width: 200px" ng-model="stud.studentStruct.std_date_enroll" placeholder="YYYY">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3" ng-show="stud.isSearchByYear">
+        <button type="button" class="btn btn-primary" style="margin-top: 24px;" ng-click="stud.searchByYear(stud.studentStruct.std_date_enroll,stud.yearOptionSelected)">
+            Search
+        </button>
+      </div> 
+    </div>
+
+
+    <!--Combo fields-->
+    <div class="jumbotron" ng-show="stud.isSearchByCombo" style="padding-top: 10px; padding-bottom: 100px;">
+      <h3>Please select</h3>
+      <div class="col-sm-3">
+        <div class="form-group" >
+          <label for="belts">Belt:</label>
+          <select class="form-control" ng-model="stud.beltSearchType" style="width: 175px">
+                <option ng-repeat="option in stud.uniqueRankRecords" value="{{option}}" >{{option}}</option>
+          </select>  
+        </div>
+      </div> 
+      <!-- Not required as rank and belt are 1-1 mapped
+      <div class="col-sm-3">
+        <div class="form-group" >
+          <div class="form-group" >
+            <label for="rank">Rank:</label><br>
+            <div class="input-group">
+              <input type="text" class="form-control" aria-describedby="basic-addon1" style="width: 200px" ng-model="stud.studentStruct.rank.rk_code">
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-sm-6">
+        <div class="form-group" >
+          <label for="year">Year Of Enrollment:</label><br>
+          <div class="input-group">
+            <select class="form-control" id="belts" ng-model="stud.yearOptionSelected" style="width: 50px">
+              <option><=</option>
+              <option>=</option>
+              <option>>=</option>
+            </select> 
+            <input type="text" class="form-control" aria-describedby="basic-addon1" style="width: 200px" ng-model="stud.studentStruct.std_date_enroll" placeholder="YYYY">
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-3" ng-show="stud.isSearchByCombo">
+        <button type="button" class="btn btn-primary" style="margin-top: 24px;"  ng-click="stud.searchByCombo(stud.beltSearchType,stud.studentStruct.std_date_enroll,stud.yearOptionSelected)">
+            Search
+        </button>
+      </div> 
+    </div>
+    <!--End of Combo box-->
+
+
+    <!--  Handling if data retrieved from backend  -->
+    <div class="jumbotron" ng-show= "stud.showStudentResult">
+      <div class="input-group" ng-show="stud.studentRecord.length>0">
+        <span class="input-group-addon" id="basic-addon1">Search {{stud.searchType}}</span>
+        <input type="text" ng-model= "query" class="form-control" placeholder="Type Here !!!" aria-describedby="basic-addon1" >
+      </div>
+      <div ng-hide="stud.studentRecord.length>0">
+        <h4>No Data Found</h4>
+      </div>
+      <div ng-repeat="record in stud.studentRecord | filter: query " style="margin-top: 10px;">
+        <div class="well well-sm" id="">
+          <span>First Name</span> : {{record.std_fname}} <br>
+          <span>Last Name</span> : {{record.std_lname}} <br>
+          <span>Rank</span> : {{record.rank.rk_code}} <br>
+          <span>Enroll Date</span> : {{record.std_date_enroll}} <br>
+          <span>Belt</span> : {{record.rank.rk_belt_color}} <br>
+          <div >
+             <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewFullInfoPage(record.std_num)" style="width: 200px; margin-right: 10px; margin-bottom: 10px; margin-top: 10px">
+                View Full information
+              </button>
+            </div> 
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewFullEditStudPage(record.std_num)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; margin-top: 10px">
+                Update Info/Rank
+              </button>
+            </div> 
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudFeePage(record.std_num)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; margin-top: 10px">
+                View/Add Fee
+              </button>
+            </div>
+            <br>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudParentPage(record.std_num)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                View/Add Parents
+              </button>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudClassAttPage(record.std_num)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                View/Add Class Attendence
+              </button>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudRankReqCompPage(record.std_num)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                View/Add Req completion
+              </button>
+            </div> 
+          </div>
+        </div>  
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main components for Adding new students-->
+  <div class="searchBar" ng-hide="stud.pageTypeSearch">
+    <div class="jumbotron" style="padding-top: 10px; padding-bottom: 130px;">
+      <!-- Split button -->
+      <div class="col-sm-8">
+        <!--
+        <h2>Add Student</h2>
+         <p>Submit below form to add new Student</p>
+       -->
+        <h2>Select to Add Record</h2>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Student')">
+            Student
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Class')">
+            Class
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Schedule')">
+            Schedule
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Rank')">
+            Rank
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" style="width: 140px"
+          ng-click="stud.addCallSwitch('RankReq')">
+            Rank Requirement
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-primary" ng-click="stud.changePage(true)" style="float: right">
+        Search
+        </button>
+      </div>
+    </div>
+    <!-- End of Second Header -->
+
+    <!-- Gather user input -->
+    <div class="jumbotron" style="padding: 40px; padding-left: 90px; padding-bottom: 40px; padding-right: 90px;" ng-show="stud.addPageSelected">
+      <div ng-show="stud.addStudentPage">
+        <h3 style="text-align: center;">Student Form</h3>
+        <form>
+         <div class="form-group">
+          <label for="usr">First Name:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_fname">
+         </div>
+         <div class="form-group">
+          <label for="usr">Last Name:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_lname">
+         </div>
+         <div class="form-group">
+            <label for="usr">Status:</label>
+            <select class="form-control" ng-model="stud.studentStruct.status" >
+                <option>active</option>
+                <option>inactive</option>
+            </select> 
+         </div>
+         <div class="form-group">
+          <label for="usr">DOB:</label>
+          <input type="date" class="form-control" id="usr" ng-model="stud.studentStruct.std_dob" placeholder="YYYY-MM-DD" >
+         </div>
+         <div class="form-group">
+          <label for="usr">Enroll Date:</label>
+          <input type="date" class="form-control" id="usr" ng-model="stud.studentStruct.std_date_enroll" placeholder="YYYY-MM-DD">
+        </div>
+         <div class="form-group">
+          <label for="usr">Phone:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_phone">
+        </div>
+         <div class="form-group">
+          <label for="usr">Email:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_email">
+        </div>
+         <div class="form-group">
+          <label for="usr">Address 1:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line1">
+        </div>
+         <div class="form-group">
+          <label for="usr">Address 2:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line2">
+        </div>
+         <div class="form-group">
+          <label for="usr">City:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_city">
+        </div>
+         <div class="form-group">
+          <label for="usr">Province:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_prov">
+        </div>
+         <div class="form-group">
+          <label for="usr">Postal Code:</label>
+          <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_zipcode">
+        </div>
+        <div class="form-group" style="display: none;">
+          <input type="text" class="form-control" id="usr" value = "4" ng-model="stud.studentStruct.rank.rk_code">
+        </div>
+        <button class="btn btn-primary" ng-click = "stud.saveStudent()">Submit</button>
+      </form>
+    </div>
+    <!--End of Student form-->
+
+    <!--Start of Class form-->
+    <div ng-show="stud.addClassPage">
+     <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('ViewClass')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Available Class Info
+              </button>
+      </div> 
+     <h3 style="text-align: center;">Class Form</h3>
+      <div class="form-group">
+          <label for="usr">Class Description:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.classStruct.cls_description">
+      </div>
+       <div class="form-group">
+          <label for="usr">Class Level:</label>
+           <select class="form-control" id="belts" ng-model="stud.classStruct.cls_level" >
+              <option selected>beginner</option>
+              <option>experienced</option>
+              <option>advanced</option>
+            </select> 
+      </div>
+      <div class="form-group" style="display: none;">
+          <input type="text" class="form-control" id="usr"  ng-model="stud.classStruct.instructor.ins_number">
+      </div>
+      <button class="btn btn-primary" ng-click = "stud.saveClass()">Submit</button>
+    </div>
+    <!--End of Class form-->
+
+    <!--Start of View Class form-->
+    <div ng-show="stud.viewClassPage">
+      <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Class')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Add Class Info
+              </button>
+      </div> 
+      <h3 style="text-align: center;">Available Classes</h3> 
+        <div>
+          <div ng-hide="stud.classRecords.length>0">
+            <div class="well well-sm" style="margin-top: 20px;">
+              <h5 style="text-align: center;">No Record Found</h5s>
+            </div>
+          </div>
+          <div ng-repeat="record in stud.classRecords " style="margin-top: 20px;">
+            <div class="well well-sm" >
+              <span>Class Code: </span> {{record.cls_code}} <br>
+              <span>Class Description: </span> {{record.cls_description}} <br>
+              <span>Class Level: </span> {{record.cls_level}} <br>
+              <span>Class Instructor: </span> {{record.instructor.ins_name}} <br>
+            </div > 
+          </div> 
+        </div>
+    </div>
+    <!--End of View Class form-->
+
+    <!--Start of View Schedule form-->
+    <div ng-show="stud.viewSchedulePage">
+    <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Schedule')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Add Class Schedule
+              </button>
+    </div> 
+    <h3 style="text-align: center;">Available Class Schedule</h3>
+       <div>
+          <div ng-hide="stud.classAllSchRecords.length>0">
+            <div class="well well-sm" style="margin-top: 20px;">
+              <h5 style="text-align: center;">No Record Found</h5s>
+            </div>
+          </div>
+          <div ng-repeat="record in stud.classAllSchRecords " style="margin-top: 20px;">
+            <div class="well well-sm" >
+              <span>Schedule Number: </span> {{record.sch_num}} <br>
+              <span>Class Number: </span> {{record.classs.cls_code}} <br>
+              <span>Class Description: </span> {{record.classs.cls_description}} <br>
+              <span>Schedule Day: </span> {{record.sch_dayweek}} <br>
+              <span>Schedule Start Time: </span> {{record.start_time}} <br>
+              <span>Schedule End Time: </span> {{record.end_time}} <br>
+            </div > 
+          </div> 
+        </div>
+    </div>
+    <!--End of View Schedule form-->
+
+    <!--Start of Schedule form-->
+    <div ng-show="stud.addSchedulePage">
+    <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('ViewSchedule')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Available Class Schedule
+              </button>
+    </div> 
+    <h3 style="text-align: center;">Class Schedule Form</h3>
+       <!--Add the drop down here-->
+       <div class="form-group">
+          <label for="usr">Class Name:</label><br/>
+          <select class="form-control" ng-model="stud.scheduleStruct.classs.cls_code" >
+            <option ng-repeat="option in stud.classRecords" value="{{option.cls_code}}">{{option.cls_description}}</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="usr">Day of Week:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.scheduleStruct.sch_dayweek" placeholder="Sunday">
+      </div>
+       <div class="form-group">
+          <label for="usr">Class Start Time:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.scheduleStruct.start_time" placeholder="10:00 AM">
+      </div>
+       <div class="form-group">
+          <label for="usr">Class End Time:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.scheduleStruct.end_time" placeholder="11:00 AM">
+      </div>
+      <button class="btn btn-primary" ng-click = "stud.saveSchedule()">Submit</button>
+    </div>
+    <!--End of Schedule form-->
+
+    <!--Start of View Rank form-->
+    <div ng-show="stud.viewRankPage">
+    <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('Rank')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Add Rank 
+              </button>
+    </div> 
+      <h3 style="text-align: center;">Rank Information</h3>
+       <div>
+          <div ng-hide="stud.rankRecords.length>0">
+            <div class="well well-sm" style="margin-top: 20px;">
+              <h5 style="text-align: center;">No Record Found</h5s>
+            </div>
+          </div>
+          <div ng-repeat="record in stud.rankRecords " style="margin-top: 20px;">
+            <div class="well well-sm" >
+              <span>Rank Code: </span> {{record.rk_code}} <br>
+              <span>Rank Name: </span> {{record.rk_name}} <br>
+              <span>Belt Color: </span> {{record.rk_belt_color}} <br>
+            </div > 
+          </div> 
+        </div>
+    </div>
+    <!--End of View Rank form-->
+
+    <!--Start of Rank form--> 
+    <div ng-show="stud.addRankPage">
+    <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('ViewRank')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Available Rank Info
+              </button>
+    </div> 
+      <h3 style="text-align: center;">Rank Form</h3>
+      <div class="form-group">
+          <label for="usr">Rank Code:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.rankStruct.rk_code">
+      </div>
+      <div class="form-group">
+          <label for="usr">Rank Name:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.rankStruct.rk_name">
+      </div>
+      <div class="form-group">
+          <label for="usr">Belt Color:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.rankStruct.rk_belt_color">
+      </div>
+      <button class="btn btn-primary" ng-click = "stud.saveRank()">Submit</button>
+    </div>
+    <!--End of Rank form-->
+
+    <!--Start of view RankReq form-->
+    <div ng-show="stud.viewRankReqPage">
+     <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('RankReq')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Add Rank Requirement
+              </button>
+    </div> 
+      <h3 style="text-align: center;"> Available Rank Requirement</h3>
+      <div>
+          <div ng-hide="stud.allRankReqRecords.length>0">
+            <div class="well well-sm" style="margin-top: 20px;">
+              <h5 style="text-align: center;">No Record Found</h5s>
+            </div>
+          </div>
+          <div ng-repeat="record in stud.allRankReqRecords " style="margin-top: 20px;">
+            <div class="well well-sm" >
+              <span>Requirement Code: </span> {{record.req_num}} <br>
+              <span>Requirement Description: </span> {{record.req_description}} <br>
+              <span>Rank Code: </span> {{record.rank.rk_code}} <br>
+            </div > 
+          </div> 
+        </div>
+    </div>
+    <!--End of view RankReq form-->
+
+    <!--Start of RankReq form-->
+    <div ng-show="stud.addRankReqPage">
+     <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.addCallSwitch('ViewRankReq')" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; float: right; margin-left: 800px">
+                Available Rank Requirement
+              </button>
+    </div> 
+      <h3 style="text-align: center;">Rank Achieved Form</h3>
+       <div class="form-group">
+          <label for="usr"> Rank:</label>
+          <select class="form-control" ng-model="stud.newRankReq.rank.rk_code"" >
+            <option ng-repeat="option in stud.rankRecords" value="{{option.rk_code}}">{{option.rk_code}}</option>
+          </select>
+      </div>
+       <div class="form-group">
+          <label for="usr"> Rank Req Description:</label>
+          <input type="text" class="form-control" id="usr"  ng-model="stud.newRankReq.req_description">
+      </div>
+      <button class="btn btn-primary" ng-click = "stud.saveRankReq()">Submit</button>
+    </div>
+    <!--End of RankReq form-->
+
+    <!--Success and failure messages for -->
+    <div ng-show="stud.recordNotInserted">
+      <div class="alert alert-success" ng-show="stud.recInsertedSuccessfully">
+       <strong>Success!</strong> {{stud.alertMessage}} added successfully.
+      </div>
+      <div class="alert alert-danger" ng-hide="stud.recInsertedSuccessfully">
+        <strong>Insertion Failed!</strong> Something went wrong. Please retry later.
+      </div>
+    </div>
+    
+  </div>
+  <!--End of -->
+
+  </div><!-- end of 2nd add block-->
+  </div> <!-- end of search and Add block -->
+
+  <!--Start of Update Block-->
+  <div ng-show="stud.showUpdatePage">
+    <div class="jumbotron">
+        <button type="button" class="btn btn-primary" ng-click="stud.showSearchPage()" style="float: right; width: 150px">
+          Back to Search
+        </button>
+
+      <!--Start for Full page view-->
+      <div class="fullPageView">
+        <div ng-show="stud.showViewFullPage" >
+         <h3 style="text-align: center;">Student Information</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">First Name:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_fname" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Last Name:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_lname" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Status:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.status" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">DOB:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_dob" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Enroll Date:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_date_enroll" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Phone:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_phone" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Email:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_email" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Address 1:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line1" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Address 2:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line2" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">City:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_city" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Province:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_prov" disabled="true">
+            </div>
+             <div class="form-group">
+              <label for="usr">Postal Code:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_zipcode" disabled="true">
+            </div>
+            <div class="form-group" >
+              <label for="usr">Rank Number:</label>
+              <input type="text" class="form-control" id="usr" value = "4" ng-model="stud.studentStruct.rank.rk_code" disabled="true">
+            </div>
+            <div class="form-group">
+              <label for="usr">Rank Name:</label>
+              <input type="text" class="form-control" id="usr" value = "4" ng-model="stud.studentStruct.rank.rk_name" disabled="true">
+            </div>
+            <div class="form-group" >
+            <label for="usr">Belt Color:</label>
+              <input type="text" class="form-control" id="usr" value = "4" ng-model="stud.studentStruct.rank.rk_belt_color" disabled="true">
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--END for Full page view-->
+
+      <!--Start for Update/Edit page view-->
+      <div class="editPageView"> 
+        <div ng-show="stud.showEditStudPage">
+          <h3 style="text-align: center;">Update Student Form</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">First Name:</label>
+              <input type="text" class="form-control" id="usr"  ng-model="stud.studentStruct.std_fname">
+             </div>
+             <div class="form-group">
+              <label for="usr">Last Name:</label>
+              <input type="text" class="form-control" id="usr"   ng-model="stud.studentStruct.std_lname">
+             </div>
+             <div class="form-group">
+              <label for="usr">Status:</label>
+              <select class="form-control" ng-model="stud.studentStruct.status" >
+                <option>active</option>
+                <option>inactive</option>
+              </select> 
+             </div>
+             <div class="form-group">
+              <label for="usr">DOB:</label>
+              <input type="text" class="form-control" id="usr"  ng-model="stud.studentStruct.std_dob">
+             </div>
+             <div class="form-group">
+              <label for="usr">Enroll Date:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_date_enroll" >
+             </div>
+             <div class="form-group">
+              <label for="usr">Phone:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_phone">
+             </div>
+             <div class="form-group">
+              <label for="usr">Email:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_email" >
+             </div>
+             <div class="form-group">
+              <label for="usr">Address 1:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line1">
+             </div>
+             <div class="form-group">
+              <label for="usr">Address 2:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_line2">
+             </div>
+             <div class="form-group">
+              <label for="usr">City:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_city">
+             </div>
+             <div class="form-group">
+              <label for="usr">Province:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_prov" >
+             </div>
+             <div class="form-group">
+              <label for="usr">Postal Code:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.studentStruct.std_address_zipcode" >
+             </div>
+             <div class="form-group" >
+              <label for="usr">Rank Code:</label>
+              <input type="text" class="form-control" id="usr"  ng-model="stud.studentStruct.rank.rk_code" >
+             </div>
+             <button class="btn btn-primary" ng-click = "stud.updateStudentInfo()">Submit</button>
+          </form>
+         </div>
+      </div>
+      <!--End for Update/Edit page view-->
+
+      <!--Start for All Fee page view-->
+      <div class="addFeeView"> 
+        <div ng-show="stud.showStudFeePage">
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewAddFeePage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; margin-top: 10px">
+                Add Fee
+              </button>
+          </div>
+          <h3 style="text-align: center;">Fee Information</h3>
+          <div>
+             <div ng-hide="stud.studFeeRecords.length>0">
+                <div class="well well-sm" style="margin-top: 20px;">
+                  <h5 style="text-align: center;">No Record Found</h5s>
+                </div>
+             </div>
+             <div ng-repeat="record in stud.studFeeRecords " style="margin-top: 20px;">
+              <div class="well well-sm" >
+                  <span>Fee Number: </span> {{record.fee_num}} <br>
+                  <span>Fee Description:</span> {{record.fee_description}} <br>
+                  <span>Payment Amount:</span> {{record.fee_value}} <br>
+                  <span>Date of Payment:</span> {{record.fee_date}} <br>
+              </div > 
+            </div> 
+          </div>
+        </div>
+      </div>
+      <!--End for All Fee page view-->
+
+      <!--Start for Add Fee page view-->
+      <div class="addFeeView"> 
+        <div ng-show="stud.showAddFeePage">
+         <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudFeePage(0)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px; margin-top: 10px">
+                Fee Information
+              </button>
+          </div>
+          <h3 style="text-align: center;">Add Fee Form</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">Student:</label>
+              <input type="text" class="form-control" id="usr" disabled="true" ng-model="stud.newFeeStruct.student.std_num" value="stud.updateStudNumRecord">
+             </div>
+             <div class="form-group">
+              <label for="usr">Fee Description:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newFeeStruct.fee_description">
+             </div>
+             <div class="form-group">
+              <label for="usr">Fee Value:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newFeeStruct.fee_value">
+             </div>
+             <div class="form-group">
+              <label for="usr"> Date:</label>
+              <input type="date" class="form-control" id="usr" placeholder="YYYY-MM-DD" ng-model="stud.newFeeStruct.fee_date">
+             </div>
+             <button class="btn btn-primary" ng-click = "stud.updateStudentFeeRecord()" >Submit</button>
+          </form>
+         </div>
+      </div>
+      <!--End for Add Fee page view-->
+
+      <!--Start for Parent page view-->
+      <div class="addParentView"> 
+        <div ng-show="stud.showStudParentPage">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="stud.viewAddParentPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Add Parent Information
+            </button>
+          </div>
+          <h3 style="text-align: center;">Add Parent Form</h3>
+          <div>
+             <div ng-hide="stud.studParentRecords.length>0">
+                <div class="well well-sm" style="margin-top: 20px;">
+                  <h5 style="text-align: center;">No Record Found</h5s>
+                </div>
+             </div>
+             <div ng-repeat="record in stud.studParentRecords " style="margin-top: 20px;">
+              <div class="well well-sm" >
+                  <span>Parent Type: </span> {{record.prt_type}} <br>
+                  <span>Parent First Name:</span> {{record.prt_fname}} <br>
+                  <span>Parent Last Name:</span> {{record.prt_lname}} <br>
+                  <span>Phone:</span> {{record.prt_phone}} <br>
+                  <span>Email:</span> {{record.prt_email}} <br>
+                  <span ng-if="record.studentParent.std_num >0">Parent Student ID: {{record.studentParent.std_num}} <br></span> 
+              </div > 
+            </div> 
+          </div>
+         </div>
+        
+      </div>
+      <!--End for Parent page view-->
+
+      <!--Start for Add Parent page view-->
+      <div class="addParentView"> 
+        <div ng-show="stud.showAddParentPage">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="stud.viewStudParentPage(0)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Parent Information
+            </button>
+          </div>
+          <h3 style="text-align: center;">Add Parent Form</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">Student Id:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newParentStruct.student.std_num" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Parent Type:</label>
+              <select class="form-control" id="belts" ng-model="stud.newParentStruct.prt_type" >
+                  <option>Father</option>
+                  <option>Mother</option>
+                  <option>Guardian</option>
+              </select> 
+             </div>
+             <div class="form-group">
+              <label for="usr">First Name:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newParentStruct.prt_fname">
+             </div>
+             <div class="form-group">
+              <label for="usr">Last Name:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newParentStruct.prt_lname">
+             </div>
+             <div class="form-group">
+              <label for="usr">Phone:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newParentStruct.prt_phone">
+             </div>
+             <div class="form-group">
+              <label for="usr">Email:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newParentStruct.prt_email">
+             </div>
+             <div class="form-group">
+              <label for="usr">Parent Student Id(If any):</label>
+              <select class="form-control" ng-model="stud.newParentStruct.studentParent.std_num" >
+                <option ng-repeat="option in stud.studentRecord" value="{{option.std_num}}">{{option.std_fname}} {{option.std_lname}}({{option.std_num}})</option>
+              </select>
+             </div>
+             <button class="btn btn-primary" ng-click = "stud.updateStudentParentRecord()">Submit</button>
+          </form>
+         </div>
+      </div>
+      <!--End for Add Parent page view-->
+
+      <!--Start for Class Attendence page view-->
+      <div class="classAttendenceView"> 
+        <div ng-show="stud.showStudClassAttPage">
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewAddClassAttPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Add Class Attendence
+              </button>
+          </div>
+          <h3 style="text-align: center;">Class Attendence Records</h3> 
+          <div>
+             <div ng-hide="stud.studAttRecords.length>0">
+                <div class="well well-sm" style="margin-top: 20px;">
+                  <h5 style="text-align: center;">No Record Found</h5s>
+                </div>
+             </div>
+             <div ng-repeat="record in stud.studAttRecords " style="margin-top: 20px;">
+              <div class="well well-sm" >
+                  <span>Class Code: </span> {{record.classs.cls_code}} <br>
+                  <span>Class Description:</span> {{record.classs.cls_description}} <br>
+                  <span>Class Start Time :</span> {{record.classSch.start_time}} <br>
+                  <span>Class End Time:</span> {{record.classSch.end_time}} <br>
+                  <span>Attendance Date:</span> {{record.att_date}} <br>
+              </div > 
+            </div> 
+          </div>
+         </div>
+      </div>
+      <!--End for Class Attendence page view-->
+
+      <!--Start for Add Class Attendence page view-->
+      <div class="classAttendenceView"> 
+        <div ng-show="stud.showAddClassAttPage">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="stud.viewStudClassAttPage(0)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Class Attendence
+            </button>
+          </div>
+          <h3 style="text-align: center;">Add Class Attendence Form</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">Student Id:</label>
+              <input type="text" class="form-control" id="usr"  ng-model="stud.newClassAttendence.studentFee.std_num" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Class Code:</label>
+              <select class="form-control" ng-model="stud.newClassAttendence.classs.cls_code" ng-change="stud.apiCallToGetGeneralRecordsForClassSchedule(stud.newClassAttendence.classs.cls_code)">
+                <option ng-repeat="option in stud.classRecords" value="{{option.cls_code}}" >{{option.cls_description}}</option>
+              </select>
+             </div>
+             <div class="form-group">
+              <label for="usr">Class Schedule:</label>
+              <select class="form-control" ng-model="stud.newClassAttendence.classSch.sch_num" >
+                <option ng-repeat="option in stud.classSchRecords" value="{{option.sch_num}}" >{{option.sch_num}}</option>
+              </select>
+             </div>
+             <div class="form-group">
+              <label for="usr">Attendance Date:</label>
+              <input type="date" class="form-control" id="usr" ng-model="stud.newClassAttendence.att_date" placeholder="YYYY-MM-DD">
+             </div>
+             <button class="btn btn-primary" ng-click = "stud.updateStudentAttendenceRecord()">Submit</button>
+          </form>
+         </div>
+      </div>
+      <!--End for add Class Attendence page view-->
+
+      <!--Start for Req Completion page view-->
+      <div class="addReqCompView"> 
+        <div ng-show="stud.showStudRankReqCompPage">
+         <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewAddRankReqCompPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Add Req completion
+              </button>
+          </div>
+           <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudRankHistCompPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Rank History
+              </button>
+          </div> 
+          <h3 style="text-align: center;">Req completion Record</h3>
+          <div>
+             <div ng-hide="stud.studRankAchRecords.length>0">
+                <div class="well well-sm" style="margin-top: 20px;">
+                  <h5 style="text-align: center;">No Record Found</h5s>
+                </div>
+             </div>
+             <div ng-repeat="record in stud.studRankAchRecords " style="margin-top: 20px;">
+              <div class="well well-sm" >
+                  <span>Rank Number: </span> {{record.rank.rk_code}} <br>
+                  <span>Rank Requirement Number:</span> {{record.rank_req.req_num}} <br>
+                  <span>Requirement Description:</span> {{record.rank_req.req_description}} <br>
+                  <span>Date:</span> {{record.dt_achieved}} <br>
+              </div > 
+            </div> 
+          </div>
+         </div>
+      </div>
+       <!--End for Req Completion page view-->
+
+      <!--Start for Rank History page view-->
+      <div class="addReqCompView"> 
+        <div ng-show="stud.showStudRankHistCompPage">
+         <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewAddRankReqCompPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Add Req completion
+              </button>
+          </div>
+           <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudRankReqCompPage(0)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                View Req completion
+              </button>
+          </div> 
+          <h3 style="text-align: center;">Rank History</h3>
+          <div>
+             <div ng-hide="stud.studRankHistRecords.length>0">
+                <div class="well well-sm" style="margin-top: 20px;">
+                  <h5 style="text-align: center;">No Record Found</h5s>
+                </div>
+             </div>
+             <div ng-repeat="record in stud.studRankHistRecords " style="margin-top: 20px;">
+              <div class="well well-sm" >
+                  <span>Rank Number: </span> {{record.rank.rk_code}} <br>
+                  <span>Belt: </span> {{record.rank.rk_belt_color}} <br>
+                  <span>Date: </span> {{record.dt_achieved}} <br>
+              </div > 
+            </div> 
+          </div>
+         </div>
+      </div>
+       <!--End for Req History page view-->
+
+      <!--Start for Add Req Completion page view-->
+      <div class="addReqCompView"> 
+        <div ng-show="stud.showAddRankReqCompPage">
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudRankReqCompPage(0)" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                View Req completion
+              </button>
+          </div> 
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-click="stud.viewStudRankHistCompPage()" style="width: 200px ;margin-right: 10px; margin-bottom: 10px">
+                Rank History
+              </button>
+          </div> 
+          <h3 style="text-align: center;">Add Rank Req Completion Form</h3>
+          <form>
+             <div class="form-group">
+              <label for="usr">Student Id:</label>
+              <input type="text" class="form-control" id="usr" ng-model="stud.newClassAchReq.student.std_num" disabled="true">
+             </div>
+             <div class="form-group">
+              <label for="usr">Rank:</label>
+              <select class="form-control" ng-model="stud.newClassAchReq.rank.rk_code" ng-change="stud.apiCallToGetGeneralRecordsForRankReq(stud.newClassAchReq.rank.rk_code)" >
+                <option ng-repeat="option in stud.rankRecords" value="{{option.rk_code}}" >{{option.rk_code}} - {{option.rk_name}}</option>
+              </select>
+             </div>
+             <div class="form-group">
+              <label for="usr">Requirement:</label>
+              <select class="form-control" ng-model="stud.newClassAchReq.rank_req.req_num" >
+                <option ng-repeat="option in stud.rankReqRecords" value="{{option.req_num}}" >{{option.req_description}}-{{option.req_num}}</option>
+              </select>
+             </div>
+             <div class="form-group">
+              <label for="usr">Date of Achievement:</label>
+              <input type="date" class="form-control" id="usr" ng-model="stud.newClassAchReq.dt_achieved" placeholder="YYYY-MM-DD">
+             </div>
+             <button class="btn btn-primary" ng-click = "stud.UpdateStudentRankReqRecord()">Submit</button>
+          </form>
+         </div>
+      </div>
+       <!--End for Add Req Completion page view-->
+      <!--Success and failure messages for -->
+      <div ng-show="stud.recordNotInserted">
+        <div style="margin-top: 100px;">
+         <div class="alert alert-success" ng-show="stud.recInsertedSuccessfully">
+           <strong>Success!</strong> {{stud.alertMessage}} successfully.
+         </div>
+         <div class="alert alert-danger" ng-hide="stud.recInsertedSuccessfully">
+           <strong>Insertion Failed!</strong> Something went wrong. Please retry later.
+         </div>
+        </div> 
+      </div>
+     
+    </div>
+  <!--End of -->
+  </div>
+  <!--End of Update section-->
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="angular.controller.js"></script>
+    <script src="angular.service.js"></script>
+  </body>
+</html>
